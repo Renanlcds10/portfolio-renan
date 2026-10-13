@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img" aria-labelledby="title desc">
+  <title id="title">Ilustração de planilha</title><desc id="desc">Representação gráfica de uma planilha em tons escuros com destaques vermelhos.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#281116"/><stop offset="1" stop-color="#111114"/></linearGradient></defs>
+  <rect width="900" height="360" fill="url(#bg)"/><rect x="142" y="54" width="616" height="252" rx="16" fill="#101013" stroke="#493039" stroke-width="2"/>
+  <rect x="142" y="54" width="616" height="42" rx="16" fill="#20191d"/><circle cx="169" cy="75" r="6" fill="#f32636"/><circle cx="190" cy="75" r="6" fill="#75434a"/><circle cx="211" cy="75" r="6" fill="#75434a"/>
+  <g stroke="#383439"><path d="M142 145h616M142 194h616M142 243h616M265 96v210M388 96v210M511 96v210M634 96v210"/></g>
+  <rect x="143" y="97" width="615" height="48" fill="#8f1824" opacity=".54"/><rect x="267" y="148" width="120" height="43" rx="4" fill="#3c1a20"/><rect x="390" y="197" width="118" height="43" rx="4" fill="#3c1a20"/><rect x="635" y="246" width="120" height="57" rx="4" fill="#3c1a20"/>
+  <g fill="#bcb5bb" font-family="monospace" font-size="17"><text x="162" y="128">TURMA</text><text x="285" y="128">ALUNO</text><text x="409" y="128">SOLICITAÇÕES</text><text x="657" y="128">STATUS</text><text x="164" y="177">01</text><text x="286" y="177">Registro validado</text><text x="164" y="226">02</text><text x="410" y="226">Organização</text><text x="164" y="275">03</text></g>
+</svg>
