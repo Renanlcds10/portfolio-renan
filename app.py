@@ -6,6 +6,9 @@ import re
 import smtplib
 from email.message import EmailMessage
 from flask import Flask, jsonify, render_template, request
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 32 * 1024
@@ -23,11 +26,18 @@ def send_contact_message(name: str, email: str, subject: str, message: str) -> N
     mail["To"] = recipient
     mail["Reply-To"] = email
     mail.set_content(f"Nome: {name}\nE-mail: {email}\n\n{message}")
-    port = int(os.getenv("SMTP_PORT", "587"))
+    try:
+        port = int(os.getenv("SMTP_PORT", "587"))
+    except ValueError as exc:
+        raise RuntimeError("A configuração SMTP_PORT precisa ser um número de porta válido.") from exc
+    if not 1 <= port <= 65535:
+        raise RuntimeError("A configuração SMTP_PORT precisa estar entre 1 e 65535.")
+    username = os.getenv("SMTP_USERNAME")
+    password = os.getenv("SMTP_PASSWORD")
+    if bool(username) != bool(password):
+        raise RuntimeError("Configure SMTP_USERNAME e SMTP_PASSWORD juntos.")
     with smtplib.SMTP(host, port, timeout=15) as server:
         server.starttls()
-        username = os.getenv("SMTP_USERNAME")
-        password = os.getenv("SMTP_PASSWORD")
         if username and password:
             server.login(username, password)
         server.send_message(mail)

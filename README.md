@@ -17,6 +17,8 @@ Acesse http://127.0.0.1:5000.
 
 O formulário só confirma o envio quando o e-mail for realmente aceito pelo servidor SMTP. Configure estas variáveis no ambiente de execução:
 
+Para desenvolvimento local, copie `.env.example` para `.env` e preencha os valores. O Flask carrega esse arquivo ao iniciar, e o Git ignora `.env` para manter credenciais fora do repositório. Em produção, cadastre as mesmas variáveis no painel de secrets/variáveis do serviço de hospedagem.
+
 ```text
 SMTP_HOST=smtp.seuprovedor.com
 SMTP_PORT=587
@@ -26,7 +28,7 @@ SMTP_FROM=portfolio@seudominio.com
 CONTACT_TO=seuemail@exemplo.com
 ```
 
-Sem `SMTP_HOST` e `CONTACT_TO`, a API informa que o envio não está configurado. Use credenciais de app do seu provedor e mantenha-as em variáveis de ambiente, nunca no repositório.
+`SMTP_FROM` deve ser um endereço autorizado para envio pela conta SMTP, e `CONTACT_TO` é o endereço que receberá as mensagens. Na configuração padrão, o envio usa STARTTLS na porta 587. Se o provedor exigir autenticação, informe usuário e senha de aplicativo em `SMTP_USERNAME` e `SMTP_PASSWORD`. Sem `SMTP_HOST` e `CONTACT_TO`, a API informa que o envio não está configurado; ela nunca simula sucesso.
 
 ## Publicar
 
