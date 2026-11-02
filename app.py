@@ -36,6 +36,8 @@ def send_contact_message(name: str, email: str, subject: str, message: str) -> N
     password = os.getenv("SMTP_PASSWORD")
     if bool(username) != bool(password):
         raise RuntimeError("Configure SMTP_USERNAME e SMTP_PASSWORD juntos.")
+    if host.lower() == "smtp.mail.yahoo.com" and not (username and password):
+        raise RuntimeError("O Yahoo exige o e-mail completo e uma senha de aplicativo para autenticação SMTP.")
     with smtplib.SMTP(host, port, timeout=15) as server:
         server.starttls()
         if username and password:

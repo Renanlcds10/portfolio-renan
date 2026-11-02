@@ -28,7 +28,7 @@ SMTP_FROM=portfolio@seudominio.com
 CONTACT_TO=seuemail@exemplo.com
 ```
 
-`SMTP_FROM` deve ser um endereço autorizado para envio pela conta SMTP, e `CONTACT_TO` é o endereço que receberá as mensagens. Na configuração padrão, o envio usa STARTTLS na porta 587. Se o provedor exigir autenticação, informe usuário e senha de aplicativo em `SMTP_USERNAME` e `SMTP_PASSWORD`. Sem `SMTP_HOST` e `CONTACT_TO`, a API informa que o envio não está configurado; ela nunca simula sucesso.
+Para o Yahoo, use `smtp.mail.yahoo.com`, porta `587` com STARTTLS, autenticação obrigatória, o endereço Yahoo completo em `SMTP_USERNAME` e uma senha de aplicativo em `SMTP_PASSWORD`. Crie essa senha na página de segurança da conta Yahoo; não use sua senha principal. Em `SMTP_FROM`, use o endereço Yahoo autorizado; `CONTACT_TO` é o endereço que receberá as mensagens. Sem as credenciais e `CONTACT_TO`, a API informa que o envio não está configurado; ela nunca simula sucesso. Veja as [configurações SMTP do Yahoo](https://help.yahoo.com/kb/SLN4075.html) e como [criar uma senha de aplicativo](https://help.yahoo.com/kb/SLN15241.html).
 
 ## Publicar
 
