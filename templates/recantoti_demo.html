@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0d">
+  <meta name="description" content="Demonstração visual conceitual do RecantoTI. Todos os nomes, registros e indicadores são fictícios.">
+  <title>RecantoTI — Demonstração visual</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/recantoti-demo.css') }}">
+</head>
+<body>
+  <a class="demo-skip" href="#demo-main">Pular para o conteúdo</a>
+  <div class="demo-app">
+    <aside class="demo-sidebar">
+      <a class="demo-brand" href="#visao-geral" aria-label="RecantoTI, início da demonstração"><span class="demo-brand-mark"><i data-lucide="monitor-cog"></i></span><span>Recanto<span>TI</span></span></a>
+      <div class="demo-workspace"><span class="workspace-avatar">D</span><span><small>AMBIENTE DE APRESENTAÇÃO</small><strong>Central de TI</strong></span><i data-lucide="chevrons-up-down"></i></div>
+      <p class="demo-nav-label">ESPAÇO DE TRABALHO</p>
+      <nav class="demo-nav" aria-label="Navegação da demonstração">
+        <a class="active" href="#visao-geral"><i data-lucide="layout-dashboard"></i> Visão geral</a>
+        <a href="#chamados"><i data-lucide="inbox"></i> Chamados <span class="nav-count">04</span></a>
+        <a href="#inventario"><i data-lucide="cpu"></i> Inventário</a>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="demo-user"><span class="user-avatar">RT</span><span><strong>Equipe de demonstração</strong><small>Perfil ilustrativo</small></span><i data-lucide="more-horizontal"></i></div>
+      <a class="back-to-portfolio" href="/#projetos"><i data-lucide="arrow-left"></i> Voltar ao portfólio</a>
+    </aside>
+
+    <main class="demo-main" id="demo-main">
+      <header class="demo-topbar">
+        <div class="breadcrumb"><span>RecantoTI</span><i data-lucide="chevron-right"></i><strong>Demonstração</strong></div>
+        <div class="topbar-actions"><span class="demo-badge"><span></span> DADOS FICTÍCIOS</span><button class="icon-button" type="button" aria-label="Ajuda sobre esta demonstração" data-demo-action><i data-lucide="circle-help"></i></button></div>
+      </header>
+
+      <div class="demo-content">
+        <section id="visao-geral" class="overview-section">
+          <div class="page-title-row"><div><p class="eyebrow">PAINEL ILUSTRATIVO DE OPERAÇÕES</p><h1>Visão geral</h1><p class="page-subtitle">Um resumo demonstrativo do ambiente de suporte de TI.</p></div><button class="new-ticket" type="button" data-demo-action><i data-lucide="plus"></i> Novo chamado <span>DEMO</span></button></div>
+          <div class="fiction-notice" role="note"><i data-lucide="info"></i><p><strong>Protótipo para apresentação.</strong> Nomes, métricas, chamados, áreas e equipamentos abaixo foram inventados. Nenhum dado institucional ou pessoal real é exibido.</p></div>
+
+          <div class="metric-grid" aria-label="Indicadores fictícios de demonstração">
+            <article class="metric-card"><div class="metric-head"><span>Chamados abertos</span><i data-lucide="inbox"></i></div><div class="metric-value">08 <span class="metric-trend trend-red"><i data-lucide="arrow-up-right"></i> 2</span></div><small>exemplo ilustrativo</small><div class="metric-line line-red"><span></span></div></article>
+            <article class="metric-card"><div class="metric-head"><span>Em andamento</span><i data-lucide="loader-circle"></i></div><div class="metric-value">05 <span class="metric-trend trend-muted"><i data-lucide="minus"></i> 0</span></div><small>exemplo ilustrativo</small><div class="metric-line line-orange"><span></span></div></article>
+            <article class="metric-card"><div class="metric-head"><span>Resolvidos hoje</span><i data-lucide="circle-check"></i></div><div class="metric-value">12 <span class="metric-trend trend-green"><i data-lucide="arrow-up-right"></i> 3</span></div><small>exemplo ilustrativo</small><div class="metric-line line-green"><span></span></div></article>
+            <article class="metric-card"><div class="metric-head"><span>Itens de inventário</span><i data-lucide="boxes"></i></div><div class="metric-value">34 <span class="metric-trend trend-muted">DEMO</span></div><small>exemplo ilustrativo</small><div class="metric-line line-violet"><span></span></div></article>
+          </div>
+
+          <div class="overview-grid">
+            <section class="panel tickets-panel" id="chamados" aria-labelledby="tickets-title">
+              <div class="panel-heading"><div><p class="eyebrow">ATENDIMENTO</p><h2 id="tickets-title">Chamados recentes</h2></div><button class="text-button" type="button" data-demo-action>Ver todos <i data-lucide="arrow-up-right"></i></button></div>
+              <div class="ticket-tools"><div class="filter-tabs" role="group" aria-label="Filtrar chamados"><button class="ticket-filter active" data-status-filter="todos" aria-pressed="true">Todos <span>5</span></button><button class="ticket-filter" data-status-filter="aberto" aria-pressed="false">Abertos</button><button class="ticket-filter" data-status-filter="andamento" aria-pressed="false">Em andamento</button><button class="ticket-filter" data-status-filter="resolvido" aria-pressed="false">Resolvidos</button></div><label class="search-field"><i data-lucide="search"></i><span class="visually-hidden">Buscar chamado de demonstração</span><input id="ticket-search" type="search" placeholder="Buscar chamado" autocomplete="off"></label></div>
+              <div class="table-wrap"><table><thead><tr><th scope="col">CHAMADO</th><th scope="col">SOLICITANTE FICTÍCIO</th><th scope="col">CATEGORIA</th><th scope="col">STATUS</th><th scope="col">PRIORIDADE</th></tr></thead><tbody id="ticket-list">
+                <tr data-status="aberto" data-search="t-1042 usuário demonstração 01 acesso sistema"><td><span class="ticket-id">#T-1042</span><strong>Acesso demonstrativo ao sistema</strong></td><td><span class="person-cell"><span class="person-avatar avatar-rose">U1</span>Usuário demonstração 01</span></td><td><span class="category-pill"><i data-lucide="key-round"></i> Acesso</span></td><td><span class="status-pill status-open">Aberto</span></td><td><span class="priority priority-high"><span></span> Alta</span></td></tr>
+                <tr data-status="andamento" data-search="t-1041 usuário demonstração 02 estação teste equipamento"><td><span class="ticket-id">#T-1041</span><strong>Verificação de estação de teste</strong></td><td><span class="person-cell"><span class="person-avatar avatar-blue">U2</span>Usuário demonstração 02</span></td><td><span class="category-pill"><i data-lucide="monitor"></i> Equipamento</span></td><td><span class="status-pill status-progress">Em andamento</span></td><td><span class="priority priority-medium"><span></span> Média</span></td></tr>
+                <tr data-status="aberto" data-search="t-1040 usuário demonstração 03 rede demonstrativa conexão"><td><span class="ticket-id">#T-1040</span><strong>Conexão de rede demonstrativa</strong></td><td><span class="person-cell"><span class="person-avatar avatar-green">U3</span>Usuário demonstração 03</span></td><td><span class="category-pill"><i data-lucide="wifi"></i> Rede</span></td><td><span class="status-pill status-open">Aberto</span></td><td><span class="priority priority-low"><span></span> Baixa</span></td></tr>
+                <tr data-status="resolvido" data-search="t-1039 usuário demonstração 04 periférico fictício teclado"><td><span class="ticket-id">#T-1039</span><strong>Teste de periférico fictício</strong></td><td><span class="person-cell"><span class="person-avatar avatar-violet">U4</span>Usuário demonstração 04</span></td><td><span class="category-pill"><i data-lucide="keyboard"></i> Periférico</span></td><td><span class="status-pill status-resolved">Resolvido</span></td><td><span class="priority priority-medium"><span></span> Média</span></td></tr>
+                <tr data-status="andamento" data-search="t-1038 usuário demonstração 05 instalação aplicativo demonstração"><td><span class="ticket-id">#T-1038</span><strong>Instalação de app de demonstração</strong></td><td><span class="person-cell"><span class="person-avatar avatar-amber">U5</span>Usuário demonstração 05</span></td><td><span class="category-pill"><i data-lucide="blocks"></i> Software</span></td><td><span class="status-pill status-progress">Em andamento</span></td><td><span class="priority priority-low"><span></span> Baixa</span></td></tr>
+              </tbody></table><p class="empty-state" id="empty-tickets" hidden>Nenhum registro fictício corresponde a este filtro.</p></div>
+              <div class="table-foot"><span id="ticket-count">Exibindo 5 registros fictícios</span><span>Atualização ilustrativa <i data-lucide="clock-3"></i></span></div>
+            </section>
+
+            <aside class="panel activity-panel" aria-labelledby="activity-title"><div class="panel-heading"><div><p class="eyebrow">AMBIENTE DE EXEMPLO</p><h2 id="activity-title">Atividade recente</h2></div><button class="icon-button subtle" type="button" aria-label="Mais opções demonstrativas" data-demo-action><i data-lucide="ellipsis"></i></button></div><div class="activity-list">
+              <article class="activity-item"><span class="activity-icon activity-red"><i data-lucide="circle-plus"></i></span><div><p><strong>Chamado fictício criado</strong></p><small>Usuário demonstração 01 · há 8 min</small></div></article>
+              <article class="activity-item"><span class="activity-icon activity-green"><i data-lucide="check"></i></span><div><p><strong>Item de exemplo atualizado</strong></p><small>Equipamento DEMO-014 · há 24 min</small></div></article>
+              <article class="activity-item"><span class="activity-icon activity-blue"><i data-lucide="message-circle"></i></span><div><p><strong>Comentário de demonstração</strong></p><small>Chamado #T-1041 · há 42 min</small></div></article>
+              <article class="activity-item"><span class="activity-icon activity-violet"><i data-lucide="user-round-plus"></i></span><div><p><strong>Perfil ilustrativo adicionado</strong></p><small>Equipe de demonstração · há 1 h</small></div></article>
+            </div><button class="activity-more" type="button" data-demo-action>Ver atividade <i data-lucide="arrow-right"></i></button></aside>
+          </div>
+
+          <section class="panel inventory-panel" id="inventario" aria-labelledby="inventory-title"><div class="panel-heading"><div><p class="eyebrow">ATIVOS DE EXEMPLO</p><h2 id="inventory-title">Inventário demonstrativo</h2><p class="panel-description">Identificadores abaixo são fictícios e não correspondem a equipamentos reais.</p></div><button class="text-button" type="button" data-demo-action>Ver inventário <i data-lucide="arrow-up-right"></i></button></div><div class="inventory-grid">
+            <article class="inventory-item"><span class="device-icon"><i data-lucide="laptop"></i></span><span><strong>Estação DEMO-014</strong><small>Computador · Área de teste A</small></span><span class="device-state"><i></i> Exemplo ativo</span></article>
+            <article class="inventory-item"><span class="device-icon"><i data-lucide="printer"></i></span><span><strong>Periférico DEMO-008</strong><small>Impressora · Área de teste B</small></span><span class="device-state"><i></i> Exemplo ativo</span></article>
+            <article class="inventory-item"><span class="device-icon"><i data-lucide="router"></i></span><span><strong>Rede DEMO-003</strong><small>Roteador · Ambiente de teste</small></span><span class="device-state state-maintenance"><i></i> Em revisão</span></article>
+          </div></section>
+          <footer class="demo-footer"><span><i data-lucide="shield-check"></i> Demonstração sem dados reais</span><span>RecantoTI · Protótipo visual</span></footer>
+        </section>
+      </div>
+      <div class="demo-toast" id="demo-toast" role="status" aria-live="polite"></div>
+    </main>
+  </div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="{{ url_for('static', filename='js/recantoti-demo.js') }}" defer></script>
+</body>
+</html>

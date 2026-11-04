@@ -50,6 +50,11 @@ def index():
     return render_template("index.html")
 
 
+@app.get("/demo/recantoti")
+def recantoti_demo():
+    return render_template("recantoti_demo.html")
+
+
 @app.post("/api/contact")
 def contact():
     data = request.get_json(silent=True) or request.form
