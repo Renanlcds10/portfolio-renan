@@ -1,34 +1,34 @@
-const demoRows = [...document.querySelectorAll('#ticket-list tr')];
+const demoRows = [...document.querySelectorAll('#task-list tr')];
 const filterButtons = [...document.querySelectorAll('.ticket-filter')];
-const searchInput = document.querySelector('#ticket-search');
-const ticketCount = document.querySelector('#ticket-count');
-const emptyTickets = document.querySelector('#empty-tickets');
-let activeStatus = 'todos';
+const searchInput = document.querySelector('#task-search');
+const taskCount = document.querySelector('#task-count');
+const emptyTasks = document.querySelector('#empty-tasks');
+let activeStatus = 'todas';
 
-function updateTickets() {
+function updateTasks() {
   const query = searchInput.value.trim().toLocaleLowerCase('pt-BR');
   let visible = 0;
   demoRows.forEach(row => {
-    const matchesStatus = activeStatus === 'todos' || row.dataset.status === activeStatus;
+    const matchesStatus = activeStatus === 'todas' || row.dataset.taskStatus === activeStatus;
     const matchesQuery = !query || row.dataset.search.toLocaleLowerCase('pt-BR').includes(query);
     const show = matchesStatus && matchesQuery;
     row.hidden = !show;
     if (show) visible++;
   });
-  emptyTickets.hidden = visible !== 0;
-  ticketCount.textContent = `Exibindo ${visible} ${visible === 1 ? 'registro fictício' : 'registros fictícios'}`;
+  emptyTasks.hidden = visible !== 0;
+  taskCount.textContent = `Exibindo ${visible} ${visible === 1 ? 'tarefa fictícia' : 'tarefas fictícias'}`;
 }
 
 filterButtons.forEach(button => button.addEventListener('click', () => {
-  activeStatus = button.dataset.statusFilter;
+  activeStatus = button.dataset.taskFilter;
   filterButtons.forEach(item => {
     const selected = item === button;
     item.classList.toggle('active', selected);
     item.setAttribute('aria-pressed', String(selected));
   });
-  updateTickets();
+  updateTasks();
 }));
-searchInput.addEventListener('input', updateTickets);
+searchInput.addEventListener('input', updateTasks);
 
 const toast = document.querySelector('#demo-toast');
 let toastTimer;

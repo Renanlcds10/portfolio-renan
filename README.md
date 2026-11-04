@@ -52,7 +52,7 @@ O Blueprint usa o plano gratuito, adequado para publicar e experimentar. Nesse p
 - Foto: `static/images/renan-luiz.webp`.
 - Currículos para download: `static/files/Curriculo_Renan_Luiz_Geral.docx` e `static/files/Renan_Luiz_Resume_International.docx`.
 - Projetos e filtros: lista `projects` em `static/js/script.js`. Os itens atuais apontam para os repositórios públicos de monitoramento de câmeras com Zabbix/Python, automação de turmas com Excel/VBA e sistema de armazém em Java. As prévias em SVG são ilustrações; a captura do Zabbix vem do próprio repositório.
-- RecantoTI: a rota `/demo/recantoti` é um protótipo visual de apresentação. Todos os nomes, indicadores, chamados, áreas e identificadores mostrados são fictícios; as ações são apenas demonstrativas e não salvam nem enviam dados.
+- RecantoTI: a rota `/demo/recantoti` é uma apresentação visual do sistema interno de Infra & Suporte, centrada em inventário, tarefas da equipe, manutenção preventiva, descartes e indicadores. Os registros, nomes, áreas, identificadores e métricas são fictícios; os filtros funcionam apenas na página e nenhuma ação salva ou envia dados. A stack informada para o projeto é React, Node.js/Express, PostgreSQL e Prisma.
 - Links sociais e conteúdo: atualize os endereços correspondentes em `templates/index.html`.
 - Para trocar a foto ou currículos, substitua os arquivos em `static/images/` e `static/files/` e mantenha os nomes referenciados no HTML.
 
