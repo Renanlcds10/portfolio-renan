@@ -30,9 +30,21 @@ CONTACT_TO=seuemail@exemplo.com
 
 Para o Yahoo, use `smtp.mail.yahoo.com`, porta `587` com STARTTLS, autenticação obrigatória, o endereço Yahoo completo em `SMTP_USERNAME` e uma senha de aplicativo em `SMTP_PASSWORD`. Crie essa senha na página de segurança da conta Yahoo; não use sua senha principal. Em `SMTP_FROM`, use o endereço Yahoo autorizado; `CONTACT_TO` é o endereço que receberá as mensagens. Sem as credenciais e `CONTACT_TO`, a API informa que o envio não está configurado; ela nunca simula sucesso. Veja as [configurações SMTP do Yahoo](https://help.yahoo.com/kb/SLN4075.html) e como [criar uma senha de aplicativo](https://help.yahoo.com/kb/SLN15241.html).
 
-## Publicar
+## Publicar no Render
 
-Publique em um serviço compatível com Python/WSGI (por exemplo, Render, Railway ou Fly.io), conecte o repositório, instale `requirements.txt` e defina o comando de inicialização como `gunicorn app:app`. Configure as variáveis SMTP no painel da hospedagem e use HTTPS. O site também pode ser adaptado para outras plataformas Python que aceitem Flask.
+O GitHub Pages publica arquivos estáticos e não executa Python/Flask. Use o GitHub para guardar o código e o Render como servidor da aplicação. O arquivo `render.yaml` já define um serviço Python com `pip install -r requirements.txt`, Gunicorn e verificação de saúde.
+
+1. Crie um repositório no GitHub (por exemplo, `portfolio-renan`). Ele pode ser privado; o site hospedado será público. Não marque as opções para criar README, `.gitignore` ou licença, pois já existem no projeto.
+2. No terminal, dentro desta pasta, conecte o repositório e envie a branch atual:
+
+   ```powershell
+   git remote add origin https://github.com/SEU_USUARIO/portfolio-renan.git
+   git push -u origin master
+   ```
+
+3. No Render, escolha **New → Blueprint**, conecte o GitHub, selecione esse repositório e aplique o Blueprint. O Render detecta `render.yaml`, cria o serviço e fornece uma URL `onrender.com`.
+
+O Blueprint usa o plano gratuito, adequado para publicar e experimentar. Nesse plano, o serviço suspende depois de 15 minutos sem acessos e pode levar cerca de um minuto para despertar. Além disso, o Render Free bloqueia tráfego SMTP de saída nas portas 25, 465 e 587. Portanto, o formulário de e-mail ainda precisa de outra configuração quando formos retomar essa etapa (plano pago ou um serviço de e-mail por API HTTPS). Consulte os limites atuais do [Render Free](https://render.com/docs/free).
 
 ## Personalizar
 
