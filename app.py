@@ -5,13 +5,14 @@ import os
 import re
 import smtplib
 from email.message import EmailMessage
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, Response, jsonify, render_template, request
 from dotenv import load_dotenv
 
 load_dotenv()
 
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 32 * 1024
+PUBLIC_SITE_URL = os.getenv("PUBLIC_SITE_URL", "https://portfolio-renan.onrender.com").rstrip("/")
 
 
 def send_contact_message(name: str, email: str, subject: str, message: str) -> None:
@@ -48,6 +49,20 @@ def send_contact_message(name: str, email: str, subject: str, message: str) -> N
 @app.get("/")
 def index():
     return render_template("index.html")
+
+
+@app.get("/robots.txt")
+def robots():
+    content = f"User-agent: *\nAllow: /\nSitemap: {PUBLIC_SITE_URL}/sitemap.xml\n"
+    return Response(content, mimetype="text/plain")
+
+
+@app.get("/sitemap.xml")
+def sitemap():
+    urls = (f"{PUBLIC_SITE_URL}/", f"{PUBLIC_SITE_URL}/demo/recantoti")
+    entries = "\n".join(f"  <url><loc>{url}</loc></url>" for url in urls)
+    content = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{entries}\n</urlset>\n'
+    return Response(content, mimetype="application/xml")
 
 
 @app.get("/demo/recantoti")

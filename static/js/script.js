@@ -13,7 +13,12 @@ function renderProjects(filter='Todos') {
 }
 renderProjects();
 document.querySelectorAll('.filter-button').forEach(button => button.addEventListener('click', () => {
-  document.querySelector('.filter-button.active')?.classList.remove('active'); button.classList.add('active'); renderProjects(button.dataset.filter);
+  document.querySelectorAll('.filter-button').forEach(item => {
+    const selected = item === button;
+    item.classList.toggle('active', selected);
+    item.setAttribute('aria-pressed', String(selected));
+  });
+  renderProjects(button.dataset.filter);
 }));
 
 const menuToggle = document.querySelector('.menu-toggle');
@@ -27,7 +32,11 @@ nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
 const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target);}}),{threshold:.13});
 document.querySelectorAll('.reveal').forEach(element=>revealObserver.observe(element));
 const sections = [...document.querySelectorAll('main section[id]')];
-const sectionObserver = new IntersectionObserver(entries => entries.forEach(entry => {if(entry.isIntersecting){document.querySelectorAll('.nav-link').forEach(link=>link.classList.toggle('active',link.getAttribute('href')===`#${entry.target.id}`));}}),{rootMargin:'-35% 0px -55%'});
+const sectionObserver = new IntersectionObserver(entries => entries.forEach(entry => {if(entry.isIntersecting){document.querySelectorAll('.nav-link').forEach(link=>{
+  const selected = link.getAttribute('href') === `#${entry.target.id}`;
+  link.classList.toggle('active', selected);
+  if (selected) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current');
+});}}),{rootMargin:'-35% 0px -55%'});
 sections.forEach(section=>sectionObserver.observe(section));
 
 document.querySelector('#year').textContent = new Date().getFullYear();
