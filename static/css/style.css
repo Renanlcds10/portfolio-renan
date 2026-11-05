@@ -36,3 +36,13 @@
 @media(max-width:600px){.project-card{min-height:0}.project-details p{font-size:14px}.project-card > .project-action{min-height:40px}}
 :focus-visible{outline:2px solid var(--red);outline-offset:4px}
 .filter-button:focus-visible{outline-offset:3px}
+@media(max-width:360px){
+  :root{--container:calc(100% - 24px)}
+  .header-inner{gap:4px}
+  .brand{gap:6px;font-size:18px}
+  .brand-mark{width:22px;height:22px;flex-basis:22px}
+  .menu-toggle{width:32px}
+  .header-actions .button-small{gap:5px;padding-inline:8px;font-size:10px}
+  .hero h1{font-size:clamp(52px,16.5vw,60px);letter-spacing:-4px}
+  .section-heading h2,.contact-copy h2{font-size:clamp(31px,10vw,36px);letter-spacing:-1.4px}
+}
