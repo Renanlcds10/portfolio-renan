@@ -15,20 +15,19 @@ Acesse http://127.0.0.1:5000.
 
 ## Configurar envio do formulário
 
-O formulário só confirma o envio quando o e-mail for realmente aceito pelo servidor SMTP. Configure estas variáveis no ambiente de execução:
+O formulário só confirma o envio depois que o provedor aceita a mensagem. Para Render Free, configure o Resend por HTTPS:
 
 Para desenvolvimento local, copie `.env.example` para `.env` e preencha os valores. O Flask carrega esse arquivo ao iniciar, e o Git ignora `.env` para manter credenciais fora do repositório. Em produção, cadastre as mesmas variáveis no painel de secrets/variáveis do serviço de hospedagem.
 
 ```text
-SMTP_HOST=smtp.seuprovedor.com
-SMTP_PORT=587
-SMTP_USERNAME=...
-SMTP_PASSWORD=...
-SMTP_FROM=portfolio@seudominio.com
+RESEND_API_KEY=re_...
+RESEND_FROM=Renan Luiz <contato@seudominio.com>
 CONTACT_TO=seuemail@exemplo.com
 ```
 
-Para o Yahoo, use `smtp.mail.yahoo.com`, porta `587` com STARTTLS, autenticação obrigatória, o endereço Yahoo completo em `SMTP_USERNAME` e uma senha de aplicativo em `SMTP_PASSWORD`. Crie essa senha na página de segurança da conta Yahoo; não use sua senha principal. Em `SMTP_FROM`, use o endereço Yahoo autorizado; `CONTACT_TO` é o endereço que receberá as mensagens. Sem as credenciais e `CONTACT_TO`, a API informa que o envio não está configurado; ela nunca simula sucesso. Veja as [configurações SMTP do Yahoo](https://help.yahoo.com/kb/SLN4075.html) e como [criar uma senha de aplicativo](https://help.yahoo.com/kb/SLN15241.html).
+Crie a chave de API no Resend e use como remetente um endereço de um domínio verificado na conta Resend. Cadastre as três variáveis no painel do Render em **Environment**; mantenha a chave somente como variável secreta, nunca no Git ou no navegador. A configuração local pode ser feita em `.env`, que é ignorado pelo Git. A aplicação envia nome, e-mail, assunto e mensagem ao endpoint HTTPS do Resend e só informa sucesso quando a API responder com sucesso.
+
+Para outros ambientes que permitem SMTP, o código mantém suporte configurável via `SMTP_HOST`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD` e `SMTP_FROM`. O Yahoo exige autenticação e senha de aplicativo. No Render Free, as portas SMTP de saída `25`, `465` e `587` são bloqueadas, então prefira a API HTTPS do Resend. Veja as [configurações SMTP do Yahoo](https://help.yahoo.com/kb/SLN4075.html) e como [criar uma senha de aplicativo](https://help.yahoo.com/kb/SLN15241.html).
 
 ## Publicar no Render
 
@@ -44,7 +43,7 @@ O GitHub Pages publica arquivos estáticos e não executa Python/Flask. Use o Gi
 
 3. No Render, escolha **New → Blueprint**, conecte o GitHub, selecione esse repositório e aplique o Blueprint. O Render detecta `render.yaml`, cria o serviço e fornece uma URL `onrender.com`.
 
-O Blueprint usa o plano gratuito, adequado para publicar e experimentar. Nesse plano, o serviço suspende depois de 15 minutos sem acessos e pode levar cerca de um minuto para despertar. Além disso, o Render Free bloqueia tráfego SMTP de saída nas portas 25, 465 e 587. Portanto, o formulário de e-mail ainda precisa de outra configuração quando formos retomar essa etapa (plano pago ou um serviço de e-mail por API HTTPS). Consulte os limites atuais do [Render Free](https://render.com/docs/free).
+O Blueprint usa o plano gratuito, adequado para publicar e experimentar. Nesse plano, o serviço suspende depois de 15 minutos sem acessos e pode levar cerca de um minuto para despertar. O Render Free bloqueia tráfego SMTP de saída nas portas 25, 465 e 587; o formulário pode enviar pelo Resend usando HTTPS após configurar os secrets e um remetente de domínio verificado. Consulte os limites atuais do [Render Free](https://render.com/docs/free) e a [API de e-mail do Resend](https://resend.com/docs/api-reference/emails/send-email).
 
 ## Personalizar
 

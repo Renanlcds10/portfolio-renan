@@ -4,9 +4,12 @@ from __future__ import annotations
 import os
 import re
 import smtplib
+import json
 from email.message import EmailMessage
 from flask import Flask, Response, jsonify, render_template, request
 from dotenv import load_dotenv
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
 
 load_dotenv()
 
@@ -16,11 +19,47 @@ PUBLIC_SITE_URL = os.getenv("PUBLIC_SITE_URL", "https://portfolio-renan.onrender
 
 
 def send_contact_message(name: str, email: str, subject: str, message: str) -> None:
-    """Send via SMTP when configured; fail explicitly when it is not."""
-    host = os.getenv("SMTP_HOST")
+    """Send through Resend's HTTPS API or configured SMTP, and fail explicitly otherwise."""
     recipient = os.getenv("CONTACT_TO")
-    if not host or not recipient:
-        raise RuntimeError("O envio de mensagens ainda não está configurado.")
+    if not recipient:
+        raise RuntimeError("O endereço que receberá as mensagens ainda não está configurado.")
+
+    resend_key = os.getenv("RESEND_API_KEY")
+    resend_from = os.getenv("RESEND_FROM")
+    if resend_key or resend_from:
+        if not resend_key or not resend_from:
+            raise RuntimeError("Configure RESEND_API_KEY e RESEND_FROM juntos.")
+        payload = {
+            "from": resend_from,
+            "to": [recipient],
+            "reply_to": email,
+            "subject": f"[Portfólio] {subject}",
+            "text": f"Nome: {name}\nE-mail: {email}\n\n{message}",
+        }
+        api_request = Request(
+            "https://api.resend.com/emails",
+            data=json.dumps(payload).encode("utf-8"),
+            headers={
+                "Authorization": f"Bearer {resend_key}",
+                "Content-Type": "application/json",
+            },
+            method="POST",
+        )
+        try:
+            with urlopen(api_request, timeout=15) as response:
+                if not 200 <= response.status < 300:
+                    raise RuntimeError("O serviço de e-mail não confirmou o envio.")
+        except HTTPError as exc:
+            app.logger.warning("Resend rejected contact delivery with HTTP %s", exc.code)
+            raise RuntimeError("Não foi possível enviar agora. Confira a configuração do serviço de e-mail.") from exc
+        except URLError as exc:
+            app.logger.warning("Resend contact delivery connection failed: %s", exc.reason)
+            raise RuntimeError("Não foi possível conectar ao serviço de e-mail. Tente novamente mais tarde.") from exc
+        return
+
+    host = os.getenv("SMTP_HOST")
+    if not host:
+        raise RuntimeError("Configure Resend por HTTPS ou SMTP para ativar o envio de mensagens.")
     mail = EmailMessage()
     mail["Subject"] = f"[Portfólio] {subject}"
     mail["From"] = os.getenv("SMTP_FROM", recipient)
