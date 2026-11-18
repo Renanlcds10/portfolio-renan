@@ -41,7 +41,7 @@ def main() -> None:
 
     shutil.copytree(ROOT / "static", OUTPUT / "static")
     for asset in (OUTPUT / "static").rglob("*"):
-        if asset.suffix.lower() in {".css", ".js", ".svg", ".xml", ".txt"}:
+        if asset.suffix.lower() == ".css":
             content = asset.read_text(encoding="utf-8")
             content = content.replace("/static/", f"{BASE_PATH}/static/")
             asset.write_text(content, encoding="utf-8")
