@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/recantoti-demo.css') }}">
 </head>
-<body>
+<body data-base-path="">
   <a class="demo-skip" href="#demo-main">Pular para o conteúdo</a>
   <div class="demo-app">
     <aside class="demo-sidebar">
@@ -102,7 +102,7 @@
       <div class="demo-toast" id="demo-toast" role="status" aria-live="polite"></div>
     </main>
   </div>
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="{{ url_for('static', filename='js/lucide-0.469.0.min.js') }}" defer></script>
   <script src="{{ url_for('static', filename='js/recantoti-demo.js') }}" defer></script>
 </body>
 </html>

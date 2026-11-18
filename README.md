@@ -17,21 +17,17 @@ Acesse http://127.0.0.1:5000.
 
 Os botões **Vamos conversar** abrem o WhatsApp informado no HTML. A pessoa escreve e envia a mensagem no aplicativo. Não há formulário de e-mail nem credenciais de serviço de e-mail para configurar.
 
+## Publicar no GitHub Pages
+
+O site público fica em <https://renanlcds10.github.io/portfolio-renan/>. O GitHub Pages não executa Python; por isso, o fluxo em `.github/workflows/deploy-pages.yml` renderiza as páginas Flask para arquivos estáticos e publica também a demonstração do RecantoTI. Cada `push` na branch `master` dispara uma nova publicação.
+
+Para ativar no repositório, deixe-o público e selecione **Settings → Pages → Build and deployment → Source → GitHub Actions**. O domínio de projeto usa o nome do repositório no caminho, então ele não precisa ser renomeado.
+
 ## Publicar no Render
 
-O GitHub Pages publica arquivos estáticos e não executa Python/Flask. Use o GitHub para guardar o código e o Render como servidor da aplicação. O arquivo `render.yaml` já define um serviço Python com `pip install -r requirements.txt`, Gunicorn e verificação de saúde.
+O Render continua disponível para servir a aplicação Flask. O arquivo `render.yaml` define um serviço Python com `pip install -r requirements.txt`, Gunicorn e verificação de saúde. No Render, use **New → Blueprint**, conecte o GitHub, selecione o repositório e aplique o Blueprint. A URL `onrender.com` existente pode continuar sendo usada.
 
-1. Crie um repositório no GitHub (por exemplo, `portfolio-renan`). Ele pode ser privado; o site hospedado será público. Não marque as opções para criar README, `.gitignore` ou licença, pois já existem no projeto.
-2. No terminal, dentro desta pasta, conecte o repositório e envie a branch atual:
-
-   ```powershell
-   git remote add origin https://github.com/SEU_USUARIO/portfolio-renan.git
-   git push -u origin master
-   ```
-
-3. No Render, escolha **New → Blueprint**, conecte o GitHub, selecione esse repositório e aplique o Blueprint. O Render detecta `render.yaml`, cria o serviço e fornece uma URL `onrender.com`.
-
-O Blueprint usa o plano gratuito, adequado para publicar e experimentar. Nesse plano, o serviço suspende depois de 15 minutos sem acessos; a primeira abertura da demonstração pode levar até 50 segundos. O contato principal abre diretamente o WhatsApp e não depende do servidor para enviar mensagens. Consulte os [limites atuais do Render Free](https://render.com/docs/free).
+O Blueprint usa o plano gratuito; nesse plano, o serviço suspende após inatividade e a primeira abertura da demonstração pode levar até 50 segundos. O contato principal abre diretamente o WhatsApp e não depende do servidor para enviar mensagens. Consulte os [limites atuais do Render Free](https://render.com/docs/free).
 
 ## Personalizar
 
