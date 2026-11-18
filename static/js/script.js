@@ -40,12 +40,4 @@ const sectionObserver = new IntersectionObserver(entries => entries.forEach(entr
 sections.forEach(section=>sectionObserver.observe(section));
 
 document.querySelector('#year').textContent = new Date().getFullYear();
-const form=document.querySelector('#contact-form');
-form.addEventListener('submit',async event=>{
-  event.preventDefault(); const status=document.querySelector('#form-status'); const submit=form.querySelector('button[type="submit"]');
-  status.className='form-status'; status.textContent='Enviando…'; submit.disabled=true;
-  try{const response=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(form)))});const result=await response.json();status.textContent=result.message;status.classList.add(response.ok?'success':'error');if(response.ok)form.reset();}
-  catch{status.textContent='Não foi possível conectar ao servidor. Tente novamente.';status.classList.add('error');}
-  finally{submit.disabled=false;}
-});
 if(window.lucide)lucide.createIcons();
