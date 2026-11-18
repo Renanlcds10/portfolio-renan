@@ -13,21 +13,9 @@ python app.py
 
 Acesse http://127.0.0.1:5000.
 
-## Configurar envio do formulário
+## Contato
 
-O formulário só confirma o envio depois que o provedor aceita a mensagem. Para Render Free, configure o Resend por HTTPS:
-
-Para desenvolvimento local, copie `.env.example` para `.env` e preencha os valores. O Flask carrega esse arquivo ao iniciar, e o Git ignora `.env` para manter credenciais fora do repositório. Em produção, cadastre as mesmas variáveis no painel de secrets/variáveis do serviço de hospedagem.
-
-```text
-RESEND_API_KEY=re_...
-RESEND_FROM=Renan Luiz <contato@seudominio.com>
-CONTACT_TO=seuemail@exemplo.com
-```
-
-Crie a chave de API no Resend e use como remetente um endereço de um domínio verificado na conta Resend. Cadastre as três variáveis no painel do Render em **Environment**; mantenha a chave somente como variável secreta, nunca no Git ou no navegador. A configuração local pode ser feita em `.env`, que é ignorado pelo Git. A aplicação envia nome, e-mail, assunto e mensagem ao endpoint HTTPS do Resend e só informa sucesso quando a API responder com sucesso.
-
-Para outros ambientes que permitem SMTP, o código mantém suporte configurável via `SMTP_HOST`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD` e `SMTP_FROM`. O Yahoo exige autenticação e senha de aplicativo. No Render Free, as portas SMTP de saída `25`, `465` e `587` são bloqueadas, então prefira a API HTTPS do Resend. Veja as [configurações SMTP do Yahoo](https://help.yahoo.com/kb/SLN4075.html) e como [criar uma senha de aplicativo](https://help.yahoo.com/kb/SLN15241.html).
+Os botões **Vamos conversar** abrem o WhatsApp informado no HTML. A pessoa escreve e envia a mensagem no aplicativo. Não há formulário de e-mail nem credenciais de serviço de e-mail para configurar.
 
 ## Publicar no Render
 
@@ -43,14 +31,15 @@ O GitHub Pages publica arquivos estáticos e não executa Python/Flask. Use o Gi
 
 3. No Render, escolha **New → Blueprint**, conecte o GitHub, selecione esse repositório e aplique o Blueprint. O Render detecta `render.yaml`, cria o serviço e fornece uma URL `onrender.com`.
 
-O Blueprint usa o plano gratuito, adequado para publicar e experimentar. Nesse plano, o serviço suspende depois de 15 minutos sem acessos e pode levar cerca de um minuto para despertar. O Render Free bloqueia tráfego SMTP de saída nas portas 25, 465 e 587; o formulário pode enviar pelo Resend usando HTTPS após configurar os secrets e um remetente de domínio verificado. Consulte os limites atuais do [Render Free](https://render.com/docs/free) e a [API de e-mail do Resend](https://resend.com/docs/api-reference/emails/send-email).
+O Blueprint usa o plano gratuito, adequado para publicar e experimentar. Nesse plano, o serviço suspende depois de 15 minutos sem acessos; a primeira abertura da demonstração pode levar até 50 segundos. O contato principal abre diretamente o WhatsApp e não depende do servidor para enviar mensagens. Consulte os [limites atuais do Render Free](https://render.com/docs/free).
 
 ## Personalizar
 
 - Imagem do cenário: `static/images/hero-reference.webp`, recortada da imagem de referência para manter apenas a estação de trabalho e evitar repetir o texto que aparece na arte original.
 - Foto: `static/images/renan-luiz.webp`.
-- Currículos para download: `static/files/Curriculo_Renan_Luiz_Geral.docx` e `static/files/Renan_Luiz_Resume_International.docx`.
-- Projetos e filtros: lista `projects` em `static/js/script.js`. Os itens atuais apontam para os repositórios públicos de monitoramento de câmeras com Zabbix/Python, automação de turmas com Excel/VBA e sistema de armazém em Java. As prévias em SVG são ilustrações; a captura do Zabbix vem do próprio repositório.
+- Currículos em PDF para download: `static/files/Curriculo_Renan_Luiz_Geral.pdf` e `static/files/Renan_Luiz_Resume_International.pdf`. Os DOCX originais permanecem no projeto como fontes editáveis.
+- Projetos e filtros: lista `projects` em `static/js/script.js`. RecantoTI e Zabbix aparecem primeiro; a prévia otimizada do Zabbix fica hospedada em `static/images/project-zabbix-preview.jpg`.
+- Ícones: Lucide 0.469.0 é servido localmente por `static/js/lucide-0.469.0.min.js`, sem dependência de unpkg.com. A licença está em `static/js/LUCIDE-LICENSE.txt`.
 - RecantoTI: a rota `/demo/recantoti` é uma apresentação visual do sistema interno de Infra & Suporte, centrada em inventário, tarefas da equipe, manutenção preventiva, descartes e indicadores. Os registros, nomes, áreas, identificadores e métricas são fictícios; os filtros funcionam apenas na página e nenhuma ação salva ou envia dados. A stack informada para o projeto é React, Node.js/Express, PostgreSQL e Prisma.
 - Links sociais e conteúdo: atualize os endereços correspondentes em `templates/index.html`.
 - Para trocar a foto ou currículos, substitua os arquivos em `static/images/` e `static/files/` e mantenha os nomes referenciados no HTML.
