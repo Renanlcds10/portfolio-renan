@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import os
+import re
 import shutil
 from pathlib import Path
 
@@ -14,6 +15,7 @@ BASE_PATH = os.getenv("GITHUB_PAGES_BASE_PATH", "/portfolio-renan").rstrip("/")
 SITE_URL = os.getenv(
     "PUBLIC_SITE_URL", "https://renanlcds10.github.io/portfolio-renan"
 ).rstrip("/")
+ASSET_VERSION = os.getenv("GITHUB_PAGES_VERSION", "dev")
 
 
 def main() -> None:
@@ -36,6 +38,11 @@ def main() -> None:
         html = html.replace('="/static/', f'="{BASE_PATH}/static/')
         html = html.replace(
             "https://portfolio-renan.onrender.com", SITE_URL
+        )
+        html = re.sub(
+            r'((?:src|href)="[^"]+\.(?:css|js))"',
+            rf'\g<1>?v={ASSET_VERSION}"',
+            html,
         )
         destination.write_text(html, encoding="utf-8")
 
