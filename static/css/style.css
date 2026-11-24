@@ -92,6 +92,8 @@
 .course-tags>span{display:flex;flex-direction:column;gap:3px;padding:8px 10px;border:1px solid #303035;border-radius:9px;background:#1a1a1d;color:#dedee3;font-size:12px;line-height:1.35}
 .course-tags small{color:#92929b;font-size:10px}
 .courses-panel .course-card{padding:12px 13px}
+.courses-panel .course-in-progress{border-color:#29292e;background:#0b0b0de6}
+.courses-panel .course-in-progress .course-status{color:#f36973}
 .courses-panel .course-card h5{margin:0;color:#ececf0;font:600 13px/1.45 var(--display)}
 .courses-panel .course-card p{margin:4px 0 0;color:#a0a0aa;font-size:11px}
 .courses-panel .course-in-progress .course-card p{color:#ff8890}
