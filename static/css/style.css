@@ -54,7 +54,7 @@
 .timeline-item:not(.timeline-future){padding:22px 24px 24px;border:1px solid #29292e;border-radius:16px;background:linear-gradient(135deg,#141416f2,#101012f2);box-shadow:0 12px 32px #00000014;margin-bottom:18px}
 .timeline-item:not(.timeline-future) .timeline-dot{top:25px}
 .timeline-item:not(.timeline-future) h3{margin-top:10px}
-.timeline-highlights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:20px}
+.timeline-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin-top:20px}
 .timeline-highlight{padding:15px 14px;border:1px solid #28282d;border-radius:12px;background:#0b0b0de6;min-width:0}
 .timeline-highlight>div{display:flex;align-items:center;gap:8px}
 .timeline-highlight svg{width:17px;height:17px;flex:0 0 auto;color:var(--red)}
@@ -66,5 +66,11 @@
 .timeline-future .timeline-dot{top:22px}
 .timeline-future h3{display:flex;align-items:center;gap:8px}
 .timeline-future h3:before{content:"+";display:inline-grid;place-items:center;width:23px;height:23px;border-radius:7px;background:#f3263618;color:var(--red);font:500 18px var(--display)}
+.course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:19px}
+.course-card{padding:14px 15px;border:1px solid #29292e;border-radius:12px;background:#0b0b0de6;min-width:0}
+.course-card h3{margin:8px 0 0!important;font-size:15px!important;line-height:1.4}
+.course-status{display:inline-block;color:#f36973;font-size:11px;line-height:1.4}
+.course-in-progress{border-color:#71303a;background:linear-gradient(135deg,#211114,#111113)}
+.course-in-progress .course-status{color:#ff8890}
 @media(max-width:760px){.timeline-highlights{grid-template-columns:1fr}.timeline-highlight{padding:14px 15px}.timeline-highlight p{margin-top:7px}}
-@media(max-width:600px){.timeline-item:not(.timeline-future){padding:19px 17px 20px}.timeline-item:not(.timeline-future) .timeline-dot{top:22px}.timeline-future{padding:16px}.timeline-meta{gap:8px}.timeline-meta span+span{font-size:11px}.section-heading h2 .heading-conjunction{font-size:.64em;margin-inline:.03em}}
+@media(max-width:600px){.timeline-item:not(.timeline-future){padding:19px 17px 20px}.timeline-item:not(.timeline-future) .timeline-dot{top:22px}.timeline-future{padding:16px}.timeline-meta{gap:8px}.timeline-meta span+span{font-size:11px}.section-heading h2 .heading-conjunction{font-size:.64em;margin-inline:.03em}.course-grid{grid-template-columns:1fr}.course-card{padding:13px 14px}}
