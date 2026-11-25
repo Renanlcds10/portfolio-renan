@@ -43,12 +43,13 @@ if(window.lucide)lucide.createIcons();
 
 const translations = {
   en: {
-    availability: 'Available from December · AI/Dev internship',
+    availability: 'Open to opportunities',
+    'scroll-cue': 'Explore the portfolio',
     'hero-title': 'Computer Science student focused on <em>Artificial Intelligence</em>',
     'hero-tech': 'Artificial Intelligence <b>·</b> Python <b>·</b> Automation <b>·</b> Web Development',
     'hero-description': 'Computer Science student focused on AI and automation. I build solutions with Python and AI APIs. Seeking an internship in AI, data, or software development.',
     'about-eyebrow': 'My background',
-    'about-title': 'From IT to <span>artificial intelligence</span>',
+    'about-title': 'Building my path in <span>technology</span>',
     'about-one': 'I started in IT by solving everyday problems at a school: a printer that would not print, a projector that would not turn on, a slow network. I saw how much time repetitive tasks consumed and began automating them with Python, PyAutoGUI, Excel, and VBA.',
     'about-two': 'That led me to AI. I am studying AI APIs and intelligent agents, and want to apply them to real process automation beyond simple scripts. I am also taking AWS Securing Generative AI to learn how to put AI into production safely.',
     'about-three': 'My experience with IT support and monitoring tools such as Zabbix, Grafana, and Ubuntu gave me a practical understanding of how systems work and fail, which helps me build more reliable solutions.',
