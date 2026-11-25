@@ -103,7 +103,7 @@ const translations = {
     'upcoming-meta': 'Upcoming academic step', 'upcoming-date': 'Future · planned for 2027', 'upcoming-title': 'International mobility in Computer Engineering',
     'upcoming-place': 'Polytechnic Institute of Viseu · School of Technology and Management · Portugal',
     'upcoming-copy': 'Exchange program approved and planned for February to July 2027. The mobility period has not started yet.',
-    'education-period': 'Aug 2024 – expected Aug 2028', 'experience-period': 'Apprentice · Jul 2025 – early Dec 2026',
+    'education-period': 'Aug 2024 – expected Aug 2028', 'experience-period': 'Apprentice · Jul 2025 – Dec 2026',
     'courses-eyebrow': 'Continuous learning', 'courses-title': 'Courses & additional education', 'courses-completed': 'Completed',
     'contact-eyebrow': 'Contact', 'contact-title': 'Have an opportunity in mind? <span>Get in touch.</span>',
     'contact-copy': 'You can reach me by email, LinkedIn, or WhatsApp.', 'contact-direct-title': 'Prefer a direct conversation?',
