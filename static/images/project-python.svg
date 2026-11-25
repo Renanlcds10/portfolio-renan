@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Automação em Python</title>
+  <desc id="desc">Ilustração de um terminal escuro com etapas de um script Python.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#241216"/>
+      <stop offset="1" stop-color="#0d0d10"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f32636"/>
+      <stop offset="1" stop-color="#ff6872"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" rx="28" fill="url(#background)"/>
+  <rect x="82" y="74" width="1036" height="552" rx="22" fill="#101013" stroke="#383037" stroke-width="3"/>
+  <path d="M82 139h1036" stroke="#30272b" stroke-width="3"/>
+  <circle cx="126" cy="107" r="10" fill="#f32636"/>
+  <circle cx="160" cy="107" r="10" fill="#8b343c"/>
+  <circle cx="194" cy="107" r="10" fill="#51464a"/>
+  <text x="250" y="117" fill="#a9a1a5" font-family="monospace" font-size="22">automation.py</text>
+  <text x="133" y="220" fill="#ff6974" font-family="monospace" font-size="30">&gt;</text>
+  <text x="183" y="220" fill="#ece8eb" font-family="monospace" font-size="28">open_internal_system()</text>
+  <text x="133" y="292" fill="#ff6974" font-family="monospace" font-size="30">&gt;</text>
+  <text x="183" y="292" fill="#b9a1eb" font-family="monospace" font-size="28">navigate_to_form()</text>
+  <text x="133" y="364" fill="#ff6974" font-family="monospace" font-size="30">&gt;</text>
+  <text x="183" y="364" fill="#8bd4a5" font-family="monospace" font-size="28">fill_justification()</text>
+  <rect x="182" y="410" width="17" height="34" rx="3" fill="url(#accent)"/>
+  <rect x="133" y="500" width="934" height="1" fill="#30272b"/>
+  <text x="133" y="555" fill="#8f8990" font-family="monospace" font-size="22">Python  ·  PyAutoGUI  ·  workflow automation</text>
+</svg>

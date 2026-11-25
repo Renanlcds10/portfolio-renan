@@ -35,6 +35,9 @@ def main() -> None:
         destination.parent.mkdir(parents=True, exist_ok=True)
         html = html.replace('data-base-path=""', f'data-base-path="{BASE_PATH}"')
         html = html.replace('href="/#projetos"', f'href="{BASE_PATH}/#projetos"')
+        html = html.replace(
+            'href="/demo/recantoti"', f'href="{BASE_PATH}/demo/recantoti/"'
+        )
         html = html.replace('="/static/', f'="{BASE_PATH}/static/')
         html = html.replace(
             "https://portfolio-renan.onrender.com", SITE_URL

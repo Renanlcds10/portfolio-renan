@@ -1,26 +1,24 @@
-const siteBasePath = document.body.dataset.basePath || '';
-const projects = [
-  {name:'RecantoTI', category:'Suporte', description:'Sistema interno de Infra & Suporte para reunir inventário, tarefas da equipe, manutenção preventiva e histórico de descartes.', caseStudy:'O projeto organiza registros de materiais e equipamentos, atividades da equipe e acompanhamento preventivo. A demonstração pública é independente do sistema interno: seus nomes, locais e indicadores são fictícios, e nenhuma ação salva dados.', stack:['React','Node.js / Express','PostgreSQL','Prisma'], icon:'monitor-cog', status:'Demo · dados fictícios', image:`${siteBasePath}/static/images/project-recantoti.svg`, alt:'Ilustração demonstrativa do RecantoTI com inventário, tarefas e manutenção preventiva fictícios', url:`${siteBasePath}/demo/recantoti${siteBasePath ? '/' : ''}`, linkLabel:'Abrir demonstração', external:false, note:'A primeira abertura pode levar até 50 segundos enquanto o serviço gratuito do Render desperta.'},
-  {name:'Monitoramento de câmeras com Zabbix', category:'Python', description:'Scripts Python para automatizar o cadastro e a auditoria de hosts no Zabbix, acompanhar disponibilidade e enviar alertas via Telegram.', caseStudy:'O projeto reúne rotinas de cadastro e auditoria de hosts monitorados, verificações de disponibilidade e notificações via Telegram. Consulte o repositório para ver os scripts e os requisitos de configuração.', stack:['Python','Zabbix','Automação','Telegram'], icon:'activity', status:'Python · Zabbix', image:`${siteBasePath}/static/images/project-zabbix-preview.jpg`, alt:'Painel de problemas do Zabbix mostrando alertas de conectividade de câmeras de exemplo', url:'https://github.com/Renanlcds10/camera-monitoring-zabbix', linkLabel:'Ver código no GitHub', external:true},
-  {name:'Automação de turmas', category:'Automação', description:'Ferramentas em Excel e VBA para organizar solicitações, validar registros e apoiar a formação de turmas. Os dados da demonstração são fictícios.', caseStudy:'O fluxo usa planilhas e macros para organizar informações, verificar registros e dar suporte às etapas de formação de turmas. O material público apresenta apenas exemplos fictícios.', stack:['Excel','VBA','Automação'], icon:'workflow', status:'Excel · VBA', image:`${siteBasePath}/static/images/project-excel.svg`, alt:'Ilustração de uma planilha com colunas e linhas, representando o projeto Excel e VBA', url:'https://github.com/Renanlcds10/excel-automacao-turmas', linkLabel:'Ver código no GitHub', external:true},
-  {name:'Sistema de armazém', category:'Java', description:'Projeto introdutório de controle de estoque com cadastro, busca, atualização, listagem e ordenação de produtos usando orientação a objetos.', caseStudy:'O escopo implementado no projeto cobre operações básicas sobre produtos armazenados em uma coleção: cadastrar, localizar, atualizar, listar e ordenar. A estrutura usa conceitos introdutórios de orientação a objetos em Java.', stack:['Java','OOP','ArrayList'], icon:'package', status:'Java · estudo', image:`${siteBasePath}/static/images/project-java.svg`, alt:'Ilustração de uma interface de terminal com lista de produtos, representando o sistema de armazém', url:'https://github.com/Renanlcds10/SistemaArmazem', linkLabel:'Ver código no GitHub', external:true},
-];
-
 const grid = document.querySelector('#project-grid');
-function renderProjects(filter='Todos') {
-  grid.innerHTML = projects.filter(project => filter === 'Todos' || project.category === filter || project.stack.includes(filter)).map(project => `
-    <article class="project-card reveal visible"><div class="project-cover"><img src="${project.image}" alt="${project.alt}" loading="lazy" decoding="async"><span class="project-status">${project.status}</span></div><div class="project-card-top"><span class="project-symbol"><i data-lucide="${project.icon}"></i></span></div><h3>${project.name}</h3><p>${project.description}</p><div class="project-tags">${project.stack.map(tag => `<span>${tag}</span>`).join('')}</div><details class="project-details"><summary>Ver detalhes do projeto</summary><p>${project.caseStudy}</p></details>${project.note ? `<p class="project-note">${project.note}</p>` : ''}<a class="project-action" href="${project.url}" ${project.external ? 'target="_blank" rel="noopener noreferrer"' : ''}>${project.linkLabel} <i data-lucide="arrow-up-right"></i></a></article>`).join('');
-  if (window.lucide) lucide.createIcons();
+if (grid) {
+  const projectCards = [...grid.querySelectorAll('.project-card')];
+  const emptyState = document.querySelector('#project-empty');
+  const normalizeFilter = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  document.querySelectorAll('.filter-button').forEach(button => button.addEventListener('click', () => {
+    document.querySelectorAll('.filter-button').forEach(item => {
+      const selected = item === button;
+      item.classList.toggle('active', selected);
+      item.setAttribute('aria-pressed', String(selected));
+    });
+    const filter = normalizeFilter(button.dataset.filter);
+    projectCards.forEach(card => {
+      const categories = (card.dataset.categories || '').split(/\s+/);
+      const visible = filter === 'todos' || categories.includes(filter);
+      card.hidden = !visible;
+      if (visible) card.classList.add('visible');
+    });
+    if (emptyState) emptyState.hidden = projectCards.some(card => !card.hidden);
+  }));
 }
-renderProjects();
-document.querySelectorAll('.filter-button').forEach(button => button.addEventListener('click', () => {
-  document.querySelectorAll('.filter-button').forEach(item => {
-    const selected = item === button;
-    item.classList.toggle('active', selected);
-    item.setAttribute('aria-pressed', String(selected));
-  });
-  renderProjects(button.dataset.filter);
-}));
 
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
@@ -42,3 +40,41 @@ sections.forEach(section=>sectionObserver.observe(section));
 
 document.querySelector('#year').textContent = new Date().getFullYear();
 if(window.lucide)lucide.createIcons();
+
+const translations = {
+  en: {
+    availability: 'Available from December · AI/Dev internship',
+    'hero-title': 'Computer Science student focused on <em>Artificial Intelligence</em>',
+    'hero-tech': 'Artificial Intelligence <b>·</b> Python <b>·</b> Automation <b>·</b> Web Development',
+    'hero-description': 'Computer Science student focused on AI and automation. I build solutions with Python and AI APIs. Seeking an internship in AI, data, or software development.',
+    'about-eyebrow': 'My background',
+    'about-title': 'From IT to <span>artificial intelligence</span>',
+    'about-one': 'I started in IT by solving everyday problems at a school: a printer that would not print, a projector that would not turn on, a slow network. I saw how much time repetitive tasks consumed and began automating them with Python, PyAutoGUI, Excel, and VBA.',
+    'about-two': 'That led me to AI. I am studying AI APIs and intelligent agents, and want to apply them to real process automation beyond simple scripts. I am also taking AWS Securing Generative AI to learn how to put AI into production safely.',
+    'about-three': 'My experience with IT support and monitoring tools such as Zabbix, Grafana, and Ubuntu gave me a practical understanding of how systems work and fail, which helps me build more reliable solutions.',
+    'about-four': 'I study Computer Science at IBMR and aim to become an AI Engineer. I am looking for an internship in AI, data, or software development, preferably remote, where I can learn from a team and contribute through practical work.',
+    'education-label': 'Education',
+    'education-value': 'BSc in Computer Science · IBMR',
+    'goal-label': 'Career goal',
+    'goal-value': 'Become an AI Engineer',
+    'next-label': 'Next step',
+    'next-value': 'Exchange program in Portugal · Feb–Jul 2027'
+  }
+};
+const languageToggle = document.querySelector('#language-toggle');
+if (languageToggle) {
+  let currentLanguage = 'pt';
+  const translatableElements = [...document.querySelectorAll('[data-i18n]')];
+  const portugueseCopy = new Map(translatableElements.map(element => [element.dataset.i18n, element.innerHTML]));
+  languageToggle.addEventListener('click', () => {
+    currentLanguage = currentLanguage === 'pt' ? 'en' : 'pt';
+    document.documentElement.lang = currentLanguage === 'en' ? 'en' : 'pt-BR';
+    translatableElements.forEach(element => {
+      const key = element.dataset.i18n;
+      const translation = currentLanguage === 'en' ? translations.en[key] : portugueseCopy.get(key);
+      if (translation) element.innerHTML = translation;
+    });
+    languageToggle.textContent = currentLanguage === 'en' ? 'PT' : 'EN';
+    languageToggle.setAttribute('aria-label', currentLanguage === 'en' ? 'Mudar para português' : 'Switch to English');
+  });
+}

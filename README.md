@@ -1,6 +1,6 @@
 # Portfólio Renan Luiz
 
-Portfólio responsivo em Flask, HTML, CSS e JavaScript. Os projetos, links e dados de contato ficam reunidos em `static/js/script.js` e `templates/index.html` para atualização simples.
+Portfólio responsivo em Flask, HTML, CSS e JavaScript. O conteúdo dos projetos e os links ficam no HTML em `templates/index.html`, disponíveis mesmo sem JavaScript; `static/js/script.js` cuida dos filtros e das interações.
 
 ## Rodar localmente
 
@@ -34,7 +34,7 @@ O Blueprint usa o plano gratuito; nesse plano, o serviço suspende após inativi
 - Imagem do cenário: `static/images/hero-reference.webp`, recortada da imagem de referência para manter apenas a estação de trabalho e evitar repetir o texto que aparece na arte original.
 - Foto: `static/images/renan-luiz.webp`.
 - Currículos em PDF para download: `static/files/Curriculo_Renan_Luiz_Geral.pdf` e `static/files/Renan_Luiz_Resume_International.pdf`. Os DOCX originais permanecem no projeto como fontes editáveis.
-- Projetos e filtros: lista `projects` em `static/js/script.js`. RecantoTI e Zabbix aparecem primeiro; a prévia otimizada do Zabbix fica hospedada em `static/images/project-zabbix-preview.jpg`.
+- Projetos e filtros: cards diretamente em `templates/index.html`; as categorias para filtragem ficam em `data-categories` e o comportamento está em `static/js/script.js`. As prévias ficam em `static/images/`.
 - Ícones: Lucide 0.469.0 é servido localmente por `static/js/lucide-0.469.0.min.js`, sem dependência de unpkg.com. A licença está em `static/js/LUCIDE-LICENSE.txt`.
 - RecantoTI: a rota `/demo/recantoti` é uma apresentação visual do sistema interno de Infra & Suporte, centrada em inventário, tarefas da equipe, manutenção preventiva, descartes e indicadores. Os registros, nomes, áreas, identificadores e métricas são fictícios; os filtros funcionam apenas na página e nenhuma ação salva ou envia dados. A stack informada para o projeto é React, Node.js/Express, PostgreSQL e Prisma.
 - Links sociais e conteúdo: atualize os endereços correspondentes em `templates/index.html`.

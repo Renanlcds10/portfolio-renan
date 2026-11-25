@@ -99,3 +99,20 @@
 .courses-panel .course-in-progress .course-card p{color:#ff8890}
 @media(max-width:980px){.journey-layout{grid-template-columns:1fr}.courses-panel{max-width:none}}
 @media(max-width:600px){.courses-panel{padding:19px}.courses-heading{align-items:flex-start}.courses-heading h3{font-size:17px}.journey-layout{gap:8px}}
+
+.language-toggle{width:42px;height:42px;flex:0 0 auto;border:1px solid #39393f;border-radius:10px;background:#111113;color:#dedee4;font-size:12px;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.language-toggle:hover,.language-toggle:focus-visible{border-color:var(--red);color:#fff;background:#1b1114}
+.about-facts>div{padding:12px 14px;border:1px solid #29292e;border-radius:12px;background:linear-gradient(135deg,#141416,#101012)}
+.about-next-step{border-color:#6a3038!important;background:linear-gradient(135deg,#1b1114,#101012)!important}
+.project-problem{min-height:72px}
+.project-problem strong{display:block;margin-bottom:4px;color:#ececf0;font-size:12px;letter-spacing:.02em}
+.project-details strong{color:#ededf0}
+.project-empty{grid-column:1/-1;margin:0;padding:22px;border:1px dashed #37373d;border-radius:14px;color:#b5b5bd;text-align:center}
+.project-card[hidden]{display:none!important}
+.project-empty[hidden]{display:none}
+.skill-context{margin:-8px 0 13px;color:#8f8f99;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.skill-context-study{margin:14px 0 0;color:#f0717b;text-transform:none;letter-spacing:0;font-size:12px}
+.email-contact{display:inline-flex;align-items:center;gap:9px;color:#d4d4db;font-size:14px;overflow-wrap:anywhere}
+.email-contact svg{width:17px;height:17px;flex:0 0 auto;color:var(--red)}
+.email-contact:hover{color:#fff}
+@media(max-width:600px){.language-toggle{width:37px;height:37px}.about-facts>div{padding:11px 12px}.project-problem{min-height:0}}
